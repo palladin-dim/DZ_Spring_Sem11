@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Планировщик задач</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+    />
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Планировщик задач</a>
+        <button
+                class="navbar-toggler d-lg-none"
+                type="button"
+                data-toggle="collapse"
+                data-target="#collapsibleNavId"
+                aria-controls="collapsibleNavId"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        ></button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="../static/index.html"
+                    >Home <span class="sr-only">(current)</span></a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/task-add">Новая задача</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            id="dropdownId"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                    >Список задач</a
+                    >
+                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <a class="dropdown-item" href="/tasks/-1">Все задачи</a>
+                        <a class="dropdown-item" href="/tasks/1">Текущие задачи</a>
+                        <a class="dropdown-item" href="/tasks/0"
+                        >Запланированные задачи</a
+                        >
+                        <a class="dropdown-item" href="/tasks/2">Выполненные задачи</a>
+                    </div>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input
+                        class="form-control mr-sm-2"
+                        type="text"
+                        placeholder="Поиск"
+                />
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                    Поиск
+                </button>
+            </form>
+        </div>
+    </nav>
+</header>
+<main>
+    <article class="form-block center">
+        <h2>Новая задача</h2>
+    </article>
+    <section class="tiling">
+        <div class="tile">
+            <form
+                    action="#"
+                    th:action="@{/task-add}"
+                    th:object="${task}"
+                    method="post"
+                    class="this_margin"
+            >
+                <div class="form-group column">
+                    <label class="col-sm-1-12 col-form-label text_center"
+                    >Дата создания:</label
+                    >
+                    <label
+                            class="col-sm-1-12 col-form-label text_center"
+                            th:text="${today}"
+                    ></label>
+
+                    <div class="form-group">
+                        <label class="text_center">Описание задачи</label>
+                        <textarea
+                                class="form-control"
+                                maxlength="210"
+                                step="any"
+                                th:field="*{description}"
+                                id="description"
+                                rows="7"
+                        ></textarea>
+                    </div>
+                    <label class="col-sm-1-12 col-form-label text_center"
+                    >Статус:</label
+                    >
+                    <label
+                            class="col-sm-1-12 col-form-label text_center"
+                            th:text="${task.status}"
+                    ></label>
+                    <div class="form-group row">
+                        <div class="offset-sm-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary">
+                                Добавить
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"
+></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"
+></script>
+<script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"
+></script>
+</body>
+</html>
